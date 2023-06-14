@@ -1,0 +1,12 @@
+on:
+  schedule:
+    - cron: '0 22 * * *'
+
+jobs:
+  scheduled_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v3
+        with:
+            url: https://pokedex-lauri.fly.dev/health
