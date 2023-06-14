@@ -18,17 +18,16 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: npm install
-      - name: build
+      - name: Build frontend
         run: npm run build
-#      - name: test
-#        run: npm run test
-#      - name: e2e tests
-#        uses: cypress-io/github-action@v5
-#        with:
-#          command: npm run test:e2e
-#          start: npm run start-prod
-#          wait-on: http://localhost:3000
-      
+      - name: Check style
+        run: npm run lint
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          command: npm run test:e2e
+          start: npm run start
+          wait-on: http://localhost:3000
 
   deploy:
     if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip')}}

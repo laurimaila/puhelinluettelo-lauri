@@ -1,13 +1,10 @@
-# fly.toml app configuration file generated for puhelinluettelo-lauri on 2023-06-14T22:46:39+03:00
+# fly.toml app configuration file generated for puhelinluettelo-lauri on 2023-06-14T23:43:16+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "puhelinluettelo-lauri"
 primary_region = "arn"
-
-[deploy]
-  release_command = "npm run build"
 
 [env]
   PORT = "8080"
@@ -17,7 +14,7 @@ primary_region = "arn"
 
 [[services]]
   protocol = "tcp"
-  internal_port = 3000
+  internal_port = 8080
   processes = ["app"]
 
   [[services.ports]]

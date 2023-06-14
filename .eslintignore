@@ -1,0 +1,4 @@
+dist
+vite.config.js
+cypress/
+cypress.config.js
