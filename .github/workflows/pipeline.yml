@@ -10,6 +10,8 @@ on:
 
 jobs:
   lint_and_tests:
+    env:
+      CYPRESS_MONGO_URL: ${{ secrets.MONGO_URL }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
