@@ -24,9 +24,8 @@ jobs:
         run: npm run lint
       - name: e2e tests
         uses: cypress-io/github-action@v5
-        env:
-          CYPRESS_MONGO_URL: ${{ secrets.MONGO_URL }}
         with:
+          env: MONGO_URL=${{ secrets.MONGO_URL }}
           command: npm run test:e2e
           start: npm run start
           wait-on: http://localhost:3000
