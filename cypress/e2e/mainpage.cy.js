@@ -1,5 +1,5 @@
 describe('mainpage', function() {
-  it('front page can be opened', function() {
+  it('Frontpage can be opened and interacted with', function() {
     cy.visit('http://localhost:3000')
     cy.contains('Phonebook')
     cy.contains('Add a new contact')

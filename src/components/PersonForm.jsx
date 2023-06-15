@@ -19,8 +19,8 @@ const PersonForm = ({ addNumber, newName, handleNameChange, newNumber, handleNum
 
         <div>
           <label>Number</label>
-          id={"numberinput"}
           <input
+            id={"numberinput"}
             value={newNumber}
             onChange={handleNumberChange} />
         </div>

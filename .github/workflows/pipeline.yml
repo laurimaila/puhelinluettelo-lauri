@@ -12,7 +12,7 @@ jobs:
   lint_and_tests:
     env:
       CYPRESS_MONGO_URL: ${{ secrets.MONGO_URL }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -27,9 +27,10 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
+          start: npm start
+          browser: chrome
           command: npm run test:e2e
-          start: npm run start
-          wait-on: http://localhost:3000
+          wait-on: http://localhost:3000, http://localhost:3000/info
           
 
   deploy:
