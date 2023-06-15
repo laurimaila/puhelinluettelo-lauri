@@ -26,8 +26,10 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           command: npm run test:e2e
-          start: MONGO_URL=${{ secrets.MONGO_URL }} npm run start
+          start: npm run start
           wait-on: http://localhost:3000
+          env:
+            MONGO_URL: ${{ secrets.MONGO_URL }}
 
   deploy:
     if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip')}}
