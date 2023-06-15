@@ -12,8 +12,6 @@ jobs:
   lint_and_tests:
     runs-on: ubuntu-20.04
     steps:
-        env:
-          CYPRESS_MONGO_URL: ${{ secrets.MONGO_URL }}
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -26,6 +24,8 @@ jobs:
         run: npm run lint
       - name: e2e tests
         uses: cypress-io/github-action@v5
+        env:
+          CYPRESS_MONGO_URL: ${{ secrets.MONGO_URL }}
         with:
           command: npm run test:e2e
           start: npm run start
