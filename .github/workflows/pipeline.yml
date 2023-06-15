@@ -12,6 +12,8 @@ jobs:
   lint_and_tests:
     runs-on: ubuntu-20.04
     steps:
+        env:
+          CYPRESS_MONGO_URL: ${{ secrets.MONGO_URL }}
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -28,8 +30,7 @@ jobs:
           command: npm run test:e2e
           start: npm run start
           wait-on: http://localhost:3000
-          env:
-            MONGO_URL: ${{ secrets.MONGO_URL }}
+          
 
   deploy:
     if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip')}}
