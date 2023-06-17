@@ -30,14 +30,14 @@ jobs:
           start: npm start
           browser: chrome
           command: npm run test:e2e
-          wait-on: http://localhost:3000, http://localhost:3000/info
+          wait-on: http://localhost:3000
           
 
   deploy:
     if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip')}}
     needs: lint_and_tests
     name: Deploy app
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
@@ -45,16 +45,16 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
-#  tag_release:
-#    needs: [lint_and_tests, deploy]
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - uses: actions/checkout@v3
-#        with:
-#          fetch-depth: '0'
-#      - name: Bump version and push tag
-#        uses: anothrNick/github-tag-action@72703d02f7df0cdb8f27aeb9feafeccd67b49881
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          DEFAULT_BUMP: patch
+  tag_release:
+    needs: [lint_and_tests, deploy]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@72703d02f7df0cdb8f27aeb9feafeccd67b49881
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
       

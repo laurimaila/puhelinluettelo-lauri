@@ -92,23 +92,30 @@ const App = () => {
   }
 
   return (
-    <div>
-      <h2>Phonebook</h2>
+    <div className="app">
+      <div className="header">
+        Phonebook
+      </div>
 
       <Notification message={changeMessage} />
+
       <ErrorNotification message={errorMessage} />
+      <div className="newContact">
+        <h3>Add a new contact</h3>
 
-      <Filter filter={filter} setFilter={setFilter} />
+        <PersonForm addNumber={addNumber} newName={newName} handleNameChange={handleNameChange}
+          newNumber={newNumber} handleNumberChange={handleNumberChange} />
+      </div>
+      <div className="contacts-cont">
+        <h3>Contacts</h3>
+        <Filter filter={filter} setFilter={setFilter} />
 
-      <h3>Add a new contact</h3>
-
-      <PersonForm addNumber={addNumber} newName={newName} handleNameChange={handleNameChange}
-        newNumber={newNumber} handleNumberChange={handleNumberChange} />
-
-      <h3>Contacts</h3>
-
-      <Contacts contacts={contacts} filter={filter}
-        setContacts={setContacts} setChangeMessage={setChangeMessage} />
+        <Contacts contacts={contacts} filter={filter}
+          setContacts={setContacts} setChangeMessage={setChangeMessage} />
+      </div>
+      <div className="footer">
+        Lauri Maila 2023
+      </div>
     </div>
 
   )
