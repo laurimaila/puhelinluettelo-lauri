@@ -1,0 +1,27 @@
+@import '../vars.css';
+
+.error {
+    position: absolute;
+    top: 23vh;
+    left: 7vh;
+    width: 45vw;
+    height: auto;
+    background: var(--color1);
+    font-size: 20px;
+    border: 3px solid orangered;
+    border-radius: 10px;
+    color: darkslategray
+}
+
+.success {
+    position: absolute;
+    top: 23vh;
+    left: 7vh;
+    width: 45vw;
+    height: auto;
+    background: var(--color1);
+    font-size: 20px;
+    border: 3px solid lawngreen;
+    border-radius: 10px;
+    color: darkslategray
+}

@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import personService from './services/persons'
 import PersonForm from './components/PersonForm'
-import Filter from './components/Filter'
 import Contacts from './components/Contacts'
-import './App.css'
+import styles from './App.module.css'
 import Notification from './components/Notification'
-import ErrorNotification from './components/ErrorNotification'
 
 const App = () => {
   const [contacts, setContacts] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
-  const [errorMessage, setErrorMessage] = useState(null)
-  const [changeMessage, setChangeMessage] = useState(null)
+  const [AlertMessage, setAlertMessage] = useState({ msg: null, type: null })
 
   useEffect(() => {
     personService
@@ -41,18 +38,21 @@ const App = () => {
           .then(() => {
             setContacts(contacts.map(f => f.id !== contactToChange.id ? f : numberObject
             ))
-            setChangeMessage(
-              `Changed ${contactToChange.name}`
+            setAlertMessage({
+              msg: `Changed ${contactToChange.name}`,
+              type: "success"
+            }
+
             )
             setTimeout(() => {
-              setChangeMessage(null)
+              setAlertMessage({ msg: null, type: null })
             }, 3000)
           })
           .catch(error => {
-            setErrorMessage(error.response.data.error)
+            setAlertMessage({ msg: error.response.data.error, type: "error" })
 
             setTimeout(() => {
-              setErrorMessage(null)
+              setAlertMessage({ msg: null, type: null })
             }, 5000)
           })
       }
@@ -62,18 +62,20 @@ const App = () => {
         .create(numberObject)
         .then(returnedPerson => {
           setContacts(contacts.concat(returnedPerson))
-          setChangeMessage(
-            `Added ${numberObject.name}`
+          setAlertMessage({
+            msg: `Added ${numberObject.name}`,
+            type: "success"
+          }
           )
           setTimeout(() => {
-            setChangeMessage(null)
+            setAlertMessage({ msg: null, type: null })
           }, 3000)
         })
         .catch(error => {
-          setErrorMessage(error.response.data.error)
+          setAlertMessage({ msg: error.response.data.error, type: "error" })
 
           setTimeout(() => {
-            setErrorMessage(null)
+            setAlertMessage({ msg: null, type: null })
           }, 5000)
         })
 
@@ -92,28 +94,26 @@ const App = () => {
   }
 
   return (
-    <div className="app">
-      <div className="header">
+    <div className={styles.app}>
+      <div className={styles.header}>
         Phonebook
       </div>
 
-      <Notification message={changeMessage} />
+      <Notification alertObject={AlertMessage} />
+      <div className={styles.main}>
+        <div className={styles.newContact}>
 
-      <ErrorNotification message={errorMessage} />
-      <div className="newContact">
-        <h3>Add a new contact</h3>
 
-        <PersonForm addNumber={addNumber} newName={newName} handleNameChange={handleNameChange}
-          newNumber={newNumber} handleNumberChange={handleNumberChange} />
+          <PersonForm addNumber={addNumber} newName={newName} handleNameChange={handleNameChange}
+            newNumber={newNumber} handleNumberChange={handleNumberChange} />
+        </div>
+        <div className={styles.showContacts}>
+
+          <Contacts contacts={contacts} filter={filter} setFilter={setFilter}
+            setContacts={setContacts} setAlertMessage={setAlertMessage} />
+        </div>
       </div>
-      <div className="contacts-cont">
-        <h3>Contacts</h3>
-        <Filter filter={filter} setFilter={setFilter} />
-
-        <Contacts contacts={contacts} filter={filter}
-          setContacts={setContacts} setChangeMessage={setChangeMessage} />
-      </div>
-      <div className="footer">
+      <div className={styles.footer}>
         Lauri Maila 2023
       </div>
     </div>

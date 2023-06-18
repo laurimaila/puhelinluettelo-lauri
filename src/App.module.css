@@ -1,0 +1,51 @@
+@import './vars.css';
+
+.app {
+    width: 100%;
+    height: 100vh;
+    font-family: 'Lato';
+    background-color: var(--color1);
+    color:darkslategray
+}
+
+.header {
+    padding: 5px;
+    font-family: 'Lato', sans-serif;
+    font-weight:600;
+    background-color: var(--color1);
+    font-size: 35px;
+    text-align: center;
+    height: 5vh;
+}
+
+.main {
+    background-color: var(--color2);
+    color: black;
+    width: 90vw;
+    margin: auto;
+    border-radius: 25px;
+    border: 2px solid var(--color4);
+}
+
+.newContact {
+    padding: 15px;
+    height: 15vh;
+}
+
+.showContacts {
+    width: 40vw;
+    padding: 10px;
+    height: 25vh;
+}
+
+.footer {
+    margin: 20 px;
+    color: darkslategray;
+    text-align: center;
+    height: 5vh;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}

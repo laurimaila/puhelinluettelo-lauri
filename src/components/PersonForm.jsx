@@ -1,15 +1,17 @@
 import React from 'react'
+//import styles from './PersonForm.module.css'
 
 const PersonForm = ({ addNumber, newName, handleNameChange, newNumber, handleNumberChange }) => {
 
   return (
     <div>
 
+      <h3>Add a new contact</h3>
 
       <form onSubmit={addNumber}>
 
         <div>
-          <label>Name:</label>
+          <label>Name</label>
           <input
             id={"nameinput"}
             value={newName}
