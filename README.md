@@ -3,7 +3,9 @@
 
 Assignment for [Full stack open 2023](https://fullstackopen.com/en/).
 
-CICD was added to the project as part of [Fullstack Part 11](https://fullstackopen.com/en/part11)
+The project was turned into a React/Vite monorepo and CICD was added as a part of [Fullstack Part 11](https://fullstackopen.com/en/part11)
+
+Separate repository for other CICD assignments can be found [here](https://github.com/laurimaila/full-stack-open-pokedex)
 #
 ## Tech Stack
 
